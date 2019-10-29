@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<title>Contact</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'contactform/images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'contactform/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'contactform/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'contactform/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'contactform/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'contactform/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'contactform/vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'contactform/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'contactform/vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'contactform/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'contactform/css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+<body>
+
+
+	<div class="container-contact100">
+		<div class="contact100-map" id="google_map" data-map-x="40.722047" data-map-y="-73.986422" data-pin="images/icons/map-marker.png" data-scrollwhell="0" data-draggable="1"></div>
+
+		<div class="wrap-contact100">
+			<form class="contact100-form validate-form">
+                {{success}}
+				<span class="contact100-form-title">
+					Send Us A Message
+				</span>
+                <div class="wrap-input100 validate-input">
+                        <label class="label-input100" for="email">
+                                <img src="{% static 'contactform/images/icons/user.png' %}" alt="SYMBOL-MAIL">
+                        </label>
+                        <input id="text" class="input100" type="text" name="name" placeholder="Your Name">
+                        <span class="focus-input100"></span>
+                </div>
+                {% for error in form.name.errors %}
+                            <p style="color: #0b0b0c;">{{ error }}</p>
+                {% endfor %}
+				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<label class="label-input100" for="email">
+						<img src="{% static 'contactform/images/icons/symbol-01.png' %}" alt="SYMBOL-MAIL">
+					</label>
+					<input id="email" class="input100" type="text" name="email" placeholder="Your Email Address">
+					<span class="focus-input100"></span>
+                </div>
+                
+                {% for error in form.email.errors %}
+                        <p style="color: #0b0b0c;">{{ error }}</p>
+                {% endfor %}
+				<div class="wrap-input100 validate-input" data-validate = "Message is required">
+					<textarea class="input100" name="message" placeholder="How Can We Help? Max characters 256"></textarea>
+					<span class="focus-input100"></span>
+				</div>
+                {% for error in form.message.errors %}
+                            <p style="color: #0b0b0c;">{{ error }}</p>
+                {% endfor %}
+				<div class="container-contact100-form-btn">
+					<button class="contact100-form-btn">
+						Send Message
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="{% static 'contactform/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'contactform/vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'contactform/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'contactform/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'contactform/vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'contactform/vendor/daterangepicker/moment.min.js' %}"></script>
+	<script src="{% static 'contactform/vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'contactform/vendor/countdowntime/countdowntime.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'contactform/js/map-custom.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'contactform/js/main.js' %}"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+</body>
+</html>
