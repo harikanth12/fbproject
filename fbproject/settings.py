@@ -53,6 +53,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'fbproject.urls'
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -121,3 +123,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [static_dir]
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+MEDIA_URL = '/media/'
+
+# /home/harikanth/Documents/fbproject/fbproject/media/uploaded_images/bgimage_1rjwxmU.jpg

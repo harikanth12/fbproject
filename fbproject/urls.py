@@ -15,12 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
-from signupform.views import home,contact_form
+from signupform.views import home,contact_form,edit_profile
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',home,name='home'),
     url(r'^contactform/',contact_form,name='contactform'),
-    url(r'^fbproject/',include('signupform.urls'))
-]
+    url(r'^fbproject/',include('signupform.urls')),
+    url(r'^editprofile/(?P<id>\d+)/$',edit_profile,name='editprofile')
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

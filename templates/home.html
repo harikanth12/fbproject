@@ -59,14 +59,16 @@
     </div>
   </div>
 </nav>
-  
+ 
 <div class="container text-center">    
   <div class="row">
     <div class="col-sm-3 well">
+      {% if user.is_authenticated %}
       <div class="well">
-        <p><a href="#">My Profile</a></p>
+        <p><a href="{% url 'editprofile' id=request.user.id %}">My Profile</a></p>
         <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
       </div>
+      {% endif %}
       <div class="well">
         <p><a href="#">Interests</a></p>
         <p>
@@ -82,7 +84,7 @@
       <div class="well" style="overflow: hidden;">
           <form method="POST" action="{% url 'postuploaded' %}" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="file" name='postimage'>
+            <input type="file" name='post_image'>
             <input type="submit" class="btn btn-primary" value="Add Post" style="margin-top: 3%;float: left;">
           </form>
         </div>
@@ -111,7 +113,7 @@
         </div>
       </div>
       
-      <div class="row img-thumbnail">
+      <!-- <div class="row img-thumbnail">
         <div class="col-sm-12">
             <p style="overflow: auto;"><span style="float: left;">Posted Name:</span><span style="float: right;">Posted Date:</span></p>
 
@@ -136,9 +138,9 @@
                 Share
               </a>
         </div>
-      </div>
+      </div> -->
 
-      <div class="row img-thumbnail">
+      <!-- <div class="row img-thumbnail">
           <div class="col-sm-12">
               <p style="overflow: auto;"><span style="float: left;">Posted Name:</span><span style="float: right;">Posted Date:</span></p>
   
@@ -163,12 +165,13 @@
                   Share
                 </a>
           </div>
-        </div>
+        </div> -->
+        {% for i in data %}
       <div class="row img-thumbnail">
         <div class="col-sm-12">
-            <p style="overflow: auto;"><span style="float: left;">Posted Name:</span><span style="float: right;">Posted Date:</span></p>
+            <p style="overflow: auto;"><span style="float: left;">Posted Name:{{i.username|title}}</span><span style="float: right;">Posted Date:{{i.post_date}}</span></p>
 
-            <img src="{% static 'images/postimage1.jpg' %}" class="img-thumbnail" style="width: 100%;height:230px;">
+            <img src="{{i.post_image.url}}" class="img-thumbnail" style="width: 100%;height:230px;">
         </div>
       
         <div class="col-sm-4" style="margin-top: 2%; margin-bottom: 1%;">
@@ -178,9 +181,10 @@
             
         </div>
         <div class="col-sm-4" style="margin-top: 2%; margin-bottom: 1%;">
-            <a href="#"  style="text-decoration: None;">
+            
+            <a href="{% url 'likepost' post_id=i.id user_id=request.user.id %}"  style="text-decoration: None;">
                 <span class="glyphicon glyphicon-thumbs-up"></span>
-                Like
+                Like <span class="badge">{{i.like}}</span>
               </a>
         </div>
         <div class="col-sm-4" style="margin-top: 2%; margin-bottom: 1%;">
@@ -190,7 +194,8 @@
               </a>
         </div>
       </div>
-      <div class="row">
+      {% endfor %}
+      <!-- <div class="row">
         <div class="col-sm-3">
           <div class="well">
            <p>Anja</p>
@@ -202,7 +207,7 @@
             <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
           </div>
         </div>
-      </div>     
+      </div>      -->
     </div>
     
     <div class="col-sm-2 well">
@@ -226,80 +231,9 @@
 <!-- Footer -->
 <footer class="page-footer font-small blue pt-4">
 
-  <!-- Footer Links -->
-  <div class="container-fluid text-center text-md-left">
-
-    <!-- Grid row -->
-    <div class="row">
-
-      <!-- Grid column -->
-      <div class="col-md-6 mt-md-0 mt-3">
-
-        <!-- Content -->
-        <h5 class="text-uppercase">Footer Content</h5>
-        <p>Here you can use rows and columns to organize your footer content.</p>
-
-      </div>
-      <!-- Grid column -->
-
-      <hr class="clearfix w-100 d-md-none pb-3">
-
-      <!-- Grid column -->
-      <div class="col-md-3 mb-md-0 mb-3">
-
-        <!-- Links -->
-        <h5 class="text-uppercase">Links</h5>
-
-        <ul class="list-unstyled">
-          <li>
-            <a href="#!">Link 1</a>
-          </li>
-          <li>
-            <a href="#!">Link 2</a>
-          </li>
-          <li>
-            <a href="#!">Link 3</a>
-          </li>
-          <li>
-            <a href="#!">Link 4</a>
-          </li>
-        </ul>
-
-      </div>
-      <!-- Grid column -->
-
-      <!-- Grid column -->
-      <div class="col-md-3 mb-md-0 mb-3">
-
-        <!-- Links -->
-        <h5 class="text-uppercase">Links</h5>
-
-        <ul class="list-unstyled">
-          <li>
-            <a href="#!">Link 1</a>
-          </li>
-          <li>
-            <a href="#!">Link 2</a>
-          </li>
-          <li>
-            <a href="#!">Link 3</a>
-          </li>
-          <li>
-            <a href="#!">Link 4</a>
-          </li>
-        </ul>
-
-      </div>
-      <!-- Grid column -->
-
-    </div>
-    <!-- Grid row -->
-
-  </div>
-  <!-- Footer Links -->
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2018 Copyright:
+  <div class="footer-copyright text-center py-3">© 2019 Copyright:
     <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
   </div>
   <!-- Copyright -->

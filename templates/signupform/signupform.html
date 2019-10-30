@@ -21,6 +21,12 @@
             <!-- <img src="images/signup-bg.jpg" alt=""> -->
             <div class="container">
                 <div class="signup-content">
+                    {% if success %}
+                    <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Success!</strong>{{success}}.
+                    </div>
+                    {% endif %}
                     <form method="POST" id="signup-form" class="signup-form">
                         {% csrf_token %}
                         <h2 class="form-title">Create account</h2>

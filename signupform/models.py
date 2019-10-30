@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import datetime
 
 # Create your models here.
 class Userinfo(models.Model):
@@ -29,11 +30,21 @@ class Contactinfo(models.Model):
 
 class UserPostedImages(models.Model):
     username = models.CharField(max_length=60)
-    post_image = models.ImageField(upload_to='',max_length=255)
+    post_image = models.ImageField(upload_to='uploaded_images/',max_length=255)
     post_date=models.DateTimeField(auto_now_add=True)
+    like = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.username}"
+
+class Likecount(models.Model):
+    post_image_id = models.ForeignKey(UserPostedImages,on_delete=models.CASCADE)
+    username = models.CharField(max_length=50)
+    like_count = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.username}"
+        
     
 
 
